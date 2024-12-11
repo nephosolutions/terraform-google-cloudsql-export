@@ -1,0 +1,31 @@
+---
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: check-toml
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: check-case-conflict
+      - id: check-merge-conflict
+  - repo:  https://github.com/antonbabenko/pre-commit-terraform
+    rev: v1.96.2
+    hooks:
+      - id: terraform_fmt
+      - id: terraform_docs
+      - id: terraform_validate
+      - id: terraform_tflint
+  - repo: https://github.com/psf/black
+    rev: 24.10.0
+    hooks:
+      - id: black
+        name: Black Python code formatter
+        entry: poetry run black
+        language_version: python3
+  - repo: local
+    hooks:
+      - id: flake8
+        name: Flake8 style guide enforcement
+        entry: poetry run flake8 --show-source
+        language: system
+        types: [ python ]
